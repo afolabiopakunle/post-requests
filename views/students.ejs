@@ -1,0 +1,12 @@
+<%- include ("partials/header.ejs") %>
+<% students.forEach(student => { %>
+   <li><%= student %></li> 
+<% }) %>
+
+<form action="/addStudent" method="post">
+    <label for="studentName"></label>
+<input type="text" name="studentName" id="studentName">
+<button type="submit">Send Name</button>
+</form>
+
+<%- include ("partials/footer.ejs") %>
