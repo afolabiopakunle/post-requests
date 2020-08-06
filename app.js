@@ -1,20 +1,22 @@
 const express = require("express");
 const app = express();
-
+const bodyParser = require("body-parser");
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
+let students = ["Desire","Ibukun","Adebola"]
 
 app.get("/", (req, res) => {
     res.render("home");
 })
 
 app.get("/students", (req, res) => {
-    let students = ["Desire","Ibukun","Adebola"]
     res.render("students", {students});
 })
 
 app.post("/addStudent", (req, res) => {
-    res.send("Post Route Reached")
+    students.push(req.body.studentName)
+    res.redirect("/students")
 })
 
 
